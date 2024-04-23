@@ -25,4 +25,4 @@ Researchers and students can explore the repository to understand our approaches
 ## Reference
 
 [1] Jordan Richards, Noura Alotaibi, Daniela Cisneros, Yan Gong, Matheus B. Guerrero, Paolo Redondo, and Xuanjie Shao.
-Modern extreme value statistics for Utopian extremes. [arxiv:2311.11054](https://arxiv.org/abs/2311.11054).
+Modern extreme value statistics for Utopian extremes. (2023+). [arxiv:2311.11054](https://arxiv.org/abs/2311.11054).

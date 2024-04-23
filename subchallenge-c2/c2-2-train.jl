@@ -1,3 +1,4 @@
+cd("subchallenge-c2")
 
 using NeuralEstimators
 using Flux
@@ -9,17 +10,10 @@ using RData
 
 
 print(ARGS)
-K=350000
-w1=48
-w2=48
+K=350000 # Traing data sixe
 input=load(string("NBE/replicates/train_N",K,".Rdata")) 
-# ---- Architecture ---K
 
-seed!(1)
-using Distributions
-p=1
-
-#Normalise
+# Normalise the data. Makes training easier
 
 m=29.176
 s=22.141
@@ -39,18 +33,21 @@ for i ∈ eachindex(input["Z_val"])
 
 end
 
+# ---- Architecture ---
+
+seed!(1)
+using Distributions
+
+
 ψ = Chain(
-	Dense(1, w1 ),
-	#Dense(w1, w1 , relu),
-	Dense(w1, w1 , relu)
+	Dense(1, 48 ),
+	Dense(48, 48 , relu)
 
 )
 
-print(ψ)
 
 ϕ = Chain(
 	Dense(w1,w2,relu),
-#	Dense(w2,w2,relu),
 	Dense(w2, p)
 )
 
@@ -64,6 +61,9 @@ print(ϕ)
 int_path = "NBE/intermediates/"
 if !isdir(int_path) mkpath(int_path) end
 savepath = "$int_path/runs"
+
+
+# Define custome loss function
 
 using Flux: mean
 using Flux: Zygote
@@ -90,7 +90,7 @@ end
 using Flux: loadparams!
 
 
-
+# Train the estimator
 estimator = train(θ̂, input["theta_train"], input["theta_val"], input["Z_train"], input["Z_val"],savepath = savepath,loss=custom_loss,stopping_epochs=10, batchsize=64)
 
 
@@ -104,17 +104,6 @@ loadparams!(estimator, loadbestweights(string(savepath)))
 
 # ---- Assess the estimator ----
 
-assessment = assess([estimator], input["theta_val"],input["Z_val"])
-
-test_risk=risk(assessment,loss=custom_loss)
-print(test_risk)
-
-savepath = "$int_path/estimates"
-if !isdir(savepath) mkpath(savepath) end
-
-CSV.write(savepath * "/valid_estimates.csv", assessment.df)
-CSV.write(savepath * "/valid_runtime.csv", assessment.runtime)#
-#CSV.write(savepath * "/test_risk.csv", test_risk)
 
 assessment = assess([estimator], input["theta_test"],input["Z_test"])
 test_risk=risk(assessment,loss=custom_loss)
@@ -127,8 +116,8 @@ input=CSV.read("../Data/Amaurot.csv", DataFrame)
 
 tmp=input[1:end,"Y"]
 tmp=(reshape(tmp,1,21000) .- m) ./ s
-#tmp=(reshape(tmp,1,21000) ) 
 
+print("Estimate from data")
 print(θ̂(tmp))
 
 

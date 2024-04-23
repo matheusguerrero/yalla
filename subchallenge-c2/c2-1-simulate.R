@@ -1,4 +1,4 @@
-
+setwd("subchallenge-c2")
 data<-read.csv("../Data/Amaurot.csv")
 
 library(evd)
@@ -9,16 +9,11 @@ Y=data$Y
 
 library(evd)
 
-args=commandArgs(trailingOnly=T)
-print(args)
 
-ncores = as.numeric(args[1])
-
-
-J=as.numeric(args[2])
-n.samples=as.numeric(args[3])
-
-n.boot<-750
+ncores <- 40 # For parallel computation
+K <- 350000 # Size of training data
+n.samples <- 4e7 # n* number of observations to caluclate "theoretical" extreme quantile
+n.boot <- 750 # Number of bootstrap samples
 
 sigs<-xis<-us<-matrix(ncol=n.boot,nrow=21000)
 for(i in 1:n.boot){
@@ -29,6 +24,8 @@ for(i in 1:n.boot){
   sigs[,i]=preds[,1]
   
 }
+
+# Remove some problematic values
 us[us>100]=NA
 sigs[sigs>200]=NA
 
@@ -39,8 +36,6 @@ print(paste("ncores=",ncores))
 
 cl <- makeCluster(ncores,port=11300)
 setDefaultCluster(cl=cl)
-
-
 invisible(clusterEvalQ (cl , library("collapse")))
 clusterExport(cl , "Y")
 
@@ -103,28 +98,28 @@ theta_test<-t(as.matrix(unlist(lapply(tmp,"[[", 2))))
 print("Test data simulated")
 
 save(Z_test,theta_test,
-     file=paste0("NBE/replicates/train_N",J,".Rdata"))
+     file=paste0("NBE/replicates/train_N",K,".Rdata"))
 invisible(clusterEvalQ (cl , set.seed(2)))
 
-seeds=1001:(1000+J/5)
+seeds=1001:(1000+K/5)
 clusterExport(cl , "seeds")
 
-tmp <- simulate(xis,us,sigs,K=J/5,n.samples,seeds)
+tmp <- simulate(xis,us,sigs,K=K/5,n.samples,seeds)
 Z_val<-lapply(tmp,"[[", 1)
 theta_val<-t(as.matrix(unlist(lapply(tmp,"[[", 2))))
 print("Validation data simulated")
 
 invisible(clusterEvalQ (cl , set.seed(3)))
 
-seeds=(1001+J/5):(1000+J/5+J)
+seeds=(1001+K/5):(1000+K/5+K)
 clusterExport(cl , "seeds")
-tmp <- simulate(xis,us,sigs,K=J,n.samples, seeds)
+tmp <- simulate(xis,us,sigs,K=K,n.samples, seeds)
 Z_train<-lapply(tmp,"[[", 1)
 theta_train<-t(as.matrix(unlist(lapply(tmp,"[[", 2))))
 
 print("Training data simulated")
 save(Z_train,Z_val,Z_test,theta_train,theta_test,theta_val,
-     file=paste0("NBE/replicates/train_N",J,".Rdata"))
+     file=paste0("NBE/replicates/train_N",K,".Rdata"))
 
 
 stopCluster(cl)
