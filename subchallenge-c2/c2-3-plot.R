@@ -30,18 +30,7 @@ ggsave(p, filename =paste0("../Figures/asym_loss.pdf"), height = 7, width = 7, b
 
 
 
-ests<-read.csv("NBE/intermediates/estimates/estimates.csv")
-p2=ggplot(data=data.frame(x=ests$truth,
-                          out=ests$estimate), aes(x=x, y=out, group=1)) +theme(
-                            axis.title.x = element_text(size = 20),
-                            axis.text.y = element_text(size = 18),
-                            axis.text.x = element_text(size = 18),
-                            axis.title.y = element_text(size = 20))+
-  geom_point()+xlab( "True quantile")+ylab( "Estimated quantile")+  geom_abline(intercept = 0, slope = 1)  + coord_fixed(ratio=20)
-
-p2
-
-ests<-read.csv("NBE/intermediates/estimates/estimates.csv")
+ests<-read.csv("NBE/intermediates/estimates/test_estimates.csv")
 p2=ggplot(data=data.frame(x=ests$truth,
                           out=ests$estimate), aes(x=x, y=out, group=1)) +theme(
                             axis.title.x = element_text(size = 20),
@@ -78,4 +67,5 @@ p2
 ggsave(p2, filename =paste0("../Figures/NBE_test.pdf"), height = 7, width = 7, bg = "transparent" )
 
 boot.ests<-read.csv("NBE/intermediates/estimates/boot_estimates.csv")
+print("Bootstrap confidence interval")
 quantile(as.numeric(boot.ests),probs=c(0.025,0.975))

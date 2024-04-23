@@ -109,8 +109,8 @@ assessment = assess([estimator], input["theta_test"],input["Z_test"])
 test_risk=risk(assessment,loss=custom_loss)
 print(test_risk)
 
-CSV.write(savepath * "/estimates.csv", assessment.df)
-CSV.write(savepath * "/runtime.csv", assessment.runtime)#
+CSV.write(savepath * "/test_estimates.csv", assessment.df)
+CSV.write(savepath * "/test_runtime.csv", assessment.runtime)#
 
 input=CSV.read("../Data/Amaurot.csv", DataFrame)
 
