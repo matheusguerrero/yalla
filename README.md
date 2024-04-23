@@ -1,14 +1,14 @@
-# Yalla - EVA 2023 Data Challenge Winning Team
+# Yalla - EVA (2023) Conference Data Challenge
 
-Welcome to the official GitHub repository for the KAUST Extreme Statistics (extSTAT) Research Group's submissions for the Extreme Value Analysis (EVA) 2023 Data Challenge, held at Bocconi University in Milan, Italy. This repository contains all the R code, data analyses, and additional resources used by our team, the "Yalla Team," to secure first place in this prestigious international competition.
+Welcome to the official GitHub repository for the KAUST Extreme Statistics (extSTAT) Research Group's submission to the Extreme Value Analysis (EVA) 2023 Conference Data Challenge, held at Bocconi University in Milan, Italy. This repository contains all the R code, data analyses, and additional resources used by team "Yalla" to secure first place in this prestigious international competition.
 
 ## About the EVA 2023 Data Challenge
 
-The EVA 2023 Data Challenge presented participants with a series of complex problems centered around the analysis of environmental extreme data. Organized by esteemed academics from the University of Bath, University College London, and Lancaster University, the challenge involved four sub-challenges that required innovative statistical approaches to model extreme quantiles and estimate tail probabilities in various dimensional settings.
+The EVA 2023 Data Challenge presented participants with a series of complex problems centred around the analysis of environmental extreme data. Organised by esteemed academics from the University of Bath, University College London, and Lancaster University, the challenge involved four sub-challenges that required innovative statistical approaches to model extreme quantiles and estimate tail probabilities in various dimensional settings.
 
 ## Our Team's Achievement
 
-Our team, comprising a dynamic group of researchers and Ph.D. students from KAUST, excelled in the competition by developing new methodologies that effectively addressed each sub-challenges. We achieved a second-place finish in three of the four sub-challenges and clinched the best performance in the final sub-challenge, leading to our overall win.
+Our team, comprising a dynamic group of researchers and Ph.D. students from KAUST, excelled in the competition by developing new methodologies that effectively addressed each sub-challenges. We achieved a second-place finish in two of the four sub-challenges and clinched the best performance in the final sub-challenge, leading to our overall win.
 
 ## Repository Contents
 
@@ -24,6 +24,5 @@ Researchers and students can explore the repository to understand our approaches
 
 ## Reference
 
-[1] Jordan Richards, Noura Alotaibi, Daniela Cisneros, Yan Gong, Matheus B. Guerrero, Paolo Redondo, Xuanjie Shao
-Modern extreme value statistics for Utopian extremes
-https://doi.org/10.48550/arXiv.2311.11054
+[1] Jordan Richards, Noura Alotaibi, Daniela Cisneros, Yan Gong, Matheus B. Guerrero, Paolo Redondo, and Xuanjie Shao.
+Modern extreme value statistics for Utopian extremes. [arxiv:2311.11054](https://arxiv.org/abs/2311.11054).
