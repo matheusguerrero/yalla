@@ -1,4 +1,4 @@
-setwd("subchallenge-c2")
+setwd("yalla/subchallenge-c2")
 
 L=function(x){
   q=200

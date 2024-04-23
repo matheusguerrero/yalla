@@ -1,4 +1,4 @@
-cd("subchallenge-c2")
+cd("yalla/subchallenge-c2")
 
 using NeuralEstimators
 using Flux
