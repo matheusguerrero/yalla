@@ -10,6 +10,7 @@ library(mgcv)
 
 
 # Load and inspect the test dataset containing different covariate combinations
+setwd("yalla/subchallenge-c1")
 data.test <- read.csv("../Data/AmaurotTestSet.csv")
 colnames(data.test)
 
