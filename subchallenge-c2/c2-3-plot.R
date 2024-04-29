@@ -1,4 +1,4 @@
-setwd("yalla/subchallenge-c2")
+setwd(this.path::here())
 
 L=function(x){
   q=200

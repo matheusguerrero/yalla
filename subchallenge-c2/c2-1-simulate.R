@@ -1,4 +1,4 @@
-setwd("yalla/subchallenge-c2")
+setwd(this.path::here())
 data<-read.csv("../Data/Amaurot.csv")
 
 library(evd)
