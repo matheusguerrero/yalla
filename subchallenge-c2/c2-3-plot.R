@@ -1,3 +1,5 @@
+require(this.path)
+require(ggplot2)
 setwd(this.path::here())
 
 L=function(x){
@@ -15,7 +17,6 @@ out <-x
 for(  i in 1:1000) out[i] = L(x[i])
 plot(x,out,type="l")
 
-library(ggplot2)
 # Basic line plot with points
 p=ggplot(data=data.frame(x=x,
                        out=out), aes(x=x, y=out, group=1)) +

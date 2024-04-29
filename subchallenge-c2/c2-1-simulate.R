@@ -1,13 +1,12 @@
+require(this.path)
+require(evd)
+require(parallel)
+require(collapse)
 setwd(this.path::here())
 data<-read.csv("../Data/Amaurot.csv")
 
-library(evd)
-
 
 Y=data$Y
-
-
-library(evd)
 
 
 ncores <- 40 # For parallel computation
@@ -29,8 +28,6 @@ for(i in 1:n.boot){
 us[us>100]=NA
 sigs[sigs>200]=NA
 
-
-library(parallel)
 
 print(paste("ncores=",ncores))
 
