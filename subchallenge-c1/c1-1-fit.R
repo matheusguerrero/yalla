@@ -130,7 +130,7 @@ quants.9999 <- mclapply(1:n.boots, FUN = function(i) {
   quants <- predict(m_gpd_1, newdata = dat2[(1:100),], prob = (0.9999 - q0) / (1 - q0)) + u.test
   
   # If q0 = 0.6, save predicted GPD fits for use in subchallenge C2
-  if( q0 = 0.6){
+  if( q0 == 0.6){
    preds<-predict(m_gpd_1, newdata=dat3, type="response")
 
    save(preds, u,q0, file=paste0("GPD/",q0,"_GPD_predictions_test",i,".Rdata"))
