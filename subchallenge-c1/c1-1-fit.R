@@ -1,16 +1,17 @@
 # Clear all previous R environment data and load necessary libraries
 rm(list=ls())
-library(evgam)
-library(qgam)
-library(ggeffects) 
-library(gratia)
-library(parallel)
-library(psych)
-library(mgcv)
+require(evgam)
+require(qgam)
+require(ggeffects) 
+require(gratia)
+require(parallel)
+require(psych)
+require(mgcv)
+require(this.path)
+setwd(this.path::here())
 
 
 # Load and inspect the test dataset containing different covariate combinations
-setwd("yalla/subchallenge-c1")
 data.test <- read.csv("../Data/AmaurotTestSet.csv")
 colnames(data.test)
 
