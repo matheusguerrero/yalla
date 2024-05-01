@@ -150,4 +150,4 @@ CI.q.9999 <- apply(quantile.9999, FUN = quantile, probs = c(.5, .25, .75), MARGI
 AnswerC1 = cbind(q.9999, t(CI.q.9999))
 
 # Save the results in a file named 'C1.Rdata'
-save(AnswerC1, file = "../C1.Rdata")
+save(AnswerC1, file = "C1.Rdata")
