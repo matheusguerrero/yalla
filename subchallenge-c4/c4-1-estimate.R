@@ -8,9 +8,6 @@ require(pheatmap)
 require(ggplot2)
 require(maxLik)
 
-##### Setting working directory
-setwd(this.path::here())
-
 ##################################
 ##### User-defined functions #####
 ##################################
@@ -87,8 +84,8 @@ for(i in 1:p){
     TPDM[i,j] <- TPDM[j,i] <- sum(sum_one)/length(idx.pair)
   }
 }
-# saveRDS(TPDM, "TPDM.rds")
-# TPDM <- readRDS("TPDM.rds")
+# saveRDS(TPDM, "../subchallenge-c4/results/TPDM.rds")
+# TPDM <- readRDS("../subchallenge-c4/results/TPDM.rds")
 
 ##### Selecting cut-off for defining subgroups
 chi.mat <- TPDM
@@ -216,12 +213,12 @@ for(ind in 1:length(thres.all)){
 
 }
 
-# saveRDS(ps1_comp,"ps1_comp.rds")
-# saveRDS(ps2_comp,"ps2_comp.rds")
+# saveRDS(ps1_comp,"../subchallenge-c4/results/ps1_comp.rds")
+# saveRDS(ps2_comp,"../subchallenge-c4/results/ps2_comp.rds")
 
 ##### Plotting estimated tail probabilities for each threshold
-# ps1_comp <- readRDS("ps1_comp.rds")
-# ps2_comp <- readRDS("ps2_comp.rds")
+# ps1_comp <- readRDS("../subchallenge-c4/results/ps1_comp.rds")
+# ps2_comp <- readRDS("../subchallenge-c4/results/ps2_comp.rds")
 
 ### Estimated tail probabilities per threshold for p3
 p3 <- ggplot(data=data.frame(x=thres.all,
@@ -294,19 +291,19 @@ for(bs in 1:B){
 
 }
 
-# saveRDS(ps1_bs,"ps1_bs.rds")
-# saveRDS(ps2_bs,"ps2_bs.rds")
+# saveRDS(ps1_bs,"../subchallenge-c4/results/ps1_bs.rds")
+# saveRDS(ps2_bs,"../subchallenge-c4/results/ps2_bs.rds")
 
 ##### Empirical distribution of estimates at threshold = 0.25
-# ps1_bs <- readRDS("ps1_bs.rds")
-# ps2_bs <- readRDS("ps2_bs.rds")
+# ps1_bs <- readRDS("../subchallenge-c4/results/ps1_bs.rds")
+# ps2_bs <- readRDS("../subchallenge-c4/results/ps2_bs.rds")
 par(mfrow = c(1,2))
 boxplot(log(ps1_bs,base = 10))
 boxplot(log(ps2_bs,base = 10))
 
 #### Final answer for C4 is the median of the bootstrap estimates
 c4_answer <- c(median(ps1_bs),median(ps2_bs))
-# saveRDS(c4_answer,"C4_Answer.rds")
-# c4_answer <- readRDS("C4_Answer.rds")
+# saveRDS(c4_answer,"../subchallenge-c4/results/C4_Answer.rds")
+# c4_answer <- readRDS("../subchallenge-c4/results/C4_Answer.rds")
 c4_answer
 
