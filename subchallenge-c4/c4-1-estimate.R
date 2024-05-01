@@ -65,8 +65,8 @@ tail.prob <- function(u, q, t = rep(1,ncol(u)),thres = 0.2,init.par.up = c(20,5)
 ##############################################################
 
 ##### Importing data
-U1 = read.csv("UtopulaU1.csv")
-U2 = read.csv("UtopulaU2.csv")
+U1 = read.csv("../Data/UtopulaU1.csv")
+U2 = read.csv("../Data/UtopulaU2.csv")
 U = cbind(U1, U2)
 
 ##### Calculating TPDM
@@ -87,7 +87,7 @@ for(i in 1:p){
     TPDM[i,j] <- TPDM[j,i] <- sum(sum_one)/length(idx.pair)
   }
 }
-saveRDS(TPDM, "TPDM.rds")
+# saveRDS(TPDM, "TPDM.rds")
 # TPDM <- readRDS("TPDM.rds")
 
 ##### Selecting cut-off for defining subgroups
@@ -216,12 +216,12 @@ for(ind in 1:length(thres.all)){
 
 }
 
-saveRDS(ps1_comp,"ps1_comp.rds")
-saveRDS(ps2_comp,"ps2_comp.rds")
+# saveRDS(ps1_comp,"ps1_comp.rds")
+# saveRDS(ps2_comp,"ps2_comp.rds")
 
 ##### Plotting estimated tail probabilities for each threshold
-ps1_comp <- readRDS("ps1_comp.rds")
-ps2_comp <- readRDS("ps2_comp.rds")
+# ps1_comp <- readRDS("ps1_comp.rds")
+# ps2_comp <- readRDS("ps2_comp.rds")
 
 ### Estimated tail probabilities per threshold for p3
 p3 <- ggplot(data=data.frame(x=thres.all,
@@ -235,7 +235,7 @@ p3 <- ggplot(data=data.frame(x=thres.all,
   geom_point()+xlab( expression(phi["*"]))+
   ylab( expression(log(hat(p[3]))))
 p3
-ggsave(p3, filename =paste0("p3.pdf"), height = 3.5, width = 7, bg = "transparent" )
+ggsave(p3, filename = "../Figures/p3.pdf", height = 3.5, width = 7, bg = "transparent" )
 
 ### Estimated tail probabilities per threshold for p4
 p4 <- ggplot(data=data.frame(x=thres.all,
@@ -249,7 +249,7 @@ p4 <- ggplot(data=data.frame(x=thres.all,
   geom_point()+xlab( expression(phi["*"]))+
   ylab( expression(log(hat(p[4]))))
 p4
-ggsave(p4, filename =paste0("p4.pdf"), height = 3.5, width = 7, bg = "transparent" )
+ggsave(p4, filename = "../Figures/p4.pdf", height = 3.5, width = 7, bg = "transparent" )
 
 ## The selected threshold is 0.25.
 
@@ -294,19 +294,19 @@ for(bs in 1:B){
 
 }
 
-saveRDS(ps1_bs,"ps1_bs.rds")
-saveRDS(ps2_bs,"ps2_bs.rds")
+# saveRDS(ps1_bs,"ps1_bs.rds")
+# saveRDS(ps2_bs,"ps2_bs.rds")
 
 ##### Empirical distribution of estimates at threshold = 0.25
-ps1_bs <- readRDS("ps1_bs.rds")
-ps2_bs <- readRDS("ps2_bs.rds")
+# ps1_bs <- readRDS("ps1_bs.rds")
+# ps2_bs <- readRDS("ps2_bs.rds")
 par(mfrow = c(1,2))
 boxplot(log(ps1_bs,base = 10))
 boxplot(log(ps2_bs,base = 10))
 
 #### Final answer for C4 is the median of the bootstrap estimates
 c4_answer <- c(median(ps1_bs),median(ps2_bs))
-saveRDS(c4_answer,"C4_Answer.rds")
+# saveRDS(c4_answer,"C4_Answer.rds")
 # c4_answer <- readRDS("C4_Answer.rds")
 c4_answer
 
