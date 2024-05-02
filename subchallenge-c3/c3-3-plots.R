@@ -1,14 +1,15 @@
-
+require(this.path)
+setwd(this.path::here())
 ##############################################################################
 # Create a scatter plots for the real and the simulated data (with size 10^4):
 ##############################################################################
-library(readr)
-library(ggplot2)
-library(gridExtra)
+require(readr)
+require(ggplot2)
+require(gridExtra)
 
 # read the simualted data of size 10^4:
 sims.new <- read.csv("sim.scatterplot.csv") 
-X <- read.csv("Data/Coputopia.csv")
+X <- read.csv("../Data/Coputopia.csv")
 X=X[,-c(1,2)]
 # Create data frames:
 my_data1 <- data.frame(x = X[,1], y = X[,2])
@@ -35,7 +36,7 @@ fig1 <- ggplot(my_data1, aes(x = x, y = y,group=1)) +coord_fixed()+
   labs(title = "",
        x = expression(Y[1]),
        y = expression(Y[2])) + guides(alpha = "none", color = "none")
-ggsave(fig1, filename =paste0("C3_1.pdf"), height = 7, width = 7, bg = "transparent" )
+ggsave(fig1, filename =paste0("../Figures/C3_1.pdf"), height = 7, width = 7, bg = "transparent" )
 
 fig2 <- ggplot(my_data2, aes(x = x, y = y,group=1)) +coord_fixed()+
   theme(
@@ -52,7 +53,7 @@ fig2 <- ggplot(my_data2, aes(x = x, y = y,group=1)) +coord_fixed()+
   labs(title = "",
        x = expression(Y[2]),
        y = expression(Y[3])) + guides(alpha = "none", color = "none")
-ggsave(fig2, filename =paste0("C3_2.pdf"), height = 7, width = 7, bg = "transparent" )
+ggsave(fig2, filename =paste0("../Figures/C3_2.pdf"), height = 7, width = 7, bg = "transparent" )
 
 fig3 <- ggplot(my_data3, aes(x = x, y = y,group=1)) +coord_fixed()+
   theme(
@@ -69,7 +70,7 @@ fig3 <- ggplot(my_data3, aes(x = x, y = y,group=1)) +coord_fixed()+
   labs(title = "",
        x = expression(Y[1]),
        y = expression(Y[3])) + guides(alpha = "none", color = "none")
-ggsave(fig3, filename =paste0("C3_3.pdf"), height = 7, width = 7, bg = "transparent" )
+ggsave(fig3, filename =paste0("../Figures/C3_3.pdf"), height = 7, width = 7, bg = "transparent" )
 
 
 #################################################
@@ -78,7 +79,7 @@ ggsave(fig3, filename =paste0("C3_3.pdf"), height = 7, width = 7, bg = "transpar
 
 # Calculate the min, max, sum for simulated and real data:
 input.sim <- read.csv("sims.results95.csv") 
-X <- read.csv("Data/Coputopia.csv")
+X <- read.csv("../Data/Coputopia.csv")
 
 #min.sim <- apply(input.sim, 1, min)
 #max.sim <- apply(input.sim, 1, max)
@@ -130,7 +131,7 @@ qq3 <- ggplot(sum_data, aes(x = x, y = y)) +
   labs(title = "",
        x = expression("Simulated" ~ R),
        y = expression("Empirical" ~ R))+ guides(alpha = "none", color = "none")
-ggsave(qq3, filename =paste0("C3_agg.pdf"), height = 7, width = 7, bg = "transparent" )
+ggsave(qq3, filename =paste0("../Figures/C3_agg.pdf"), height = 7, width = 7, bg = "transparent" )
 
 # Combine the three QQ plots:
 #combined_plot1 <- grid.arrange(qq1, qq2, qq3, ncol = 3) 

@@ -1,3 +1,7 @@
+require(mvnfast)
+require(this.path)
+setwd(this.path::here())
+
 # CDF, quantile function, Jacobian for transformation to delta-Laplace margins.
 
 #------------------------------------------------------------------------------------------------------------------
@@ -123,9 +127,8 @@ nll=function(par,X0,X1X2){
   
 }
 
-library(mvnfast)
 
-data<-read.csv("Data/Coputopia.csv")
+data<-read.csv("../Data/Coputopia.csv")
 
 X=as.matrix(data[,3:5])
 

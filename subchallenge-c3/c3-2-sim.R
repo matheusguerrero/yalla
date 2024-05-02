@@ -1,13 +1,15 @@
+require(this.path)
+require(rmutil)
+setwd(this.path::here())
+load("../Data/C1.Rdata")
 
 
-
-library(rmutil)
 u=qlaplace(0.9)
 
-betas=read.csv("Data/all_beta.csv")
-input=read.csv("Data/Model1_alpha_res.csv")
-input2=read.csv("Data/Model2_alpha_res.csv")
-input3=read.csv("Data/Model3_alpha_res.csv")
+betas=read.csv("../Data/all_beta.csv")
+input=read.csv("../Data/Model1_alpha_res.csv")
+input2=read.csv("../Data/Model2_alpha_res.csv")
+input3=read.csv("../Data/Model3_alpha_res.csv")
 
 pars=vector("list",3)
 pars[[1]]=list("beta"=t(as.matrix(betas$Model1)),"alpha.vec"=cbind(input$Model1_a1,input$Model1_a2),"resid"=cbind(input$res_z1,input$res_z2))
@@ -50,7 +52,7 @@ samp.inds = sample(1:length(import.prob),size=n,prob=import.prob)
 }
 
 
-data<-read.csv("Data/Coputopia.csv")
+data<-read.csv("../Data/Coputopia.csv")
 
 X=as.matrix(data[,3:5])
 
